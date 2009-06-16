@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-
-$:.unshift(File.dirname(__FILE__) + '/lib')
-require 'sinatra/shopify'
+require File.dirname(__FILE__) + '/lib/sinatra/shopify'
 
 get '/' do
   redirect '/home'
