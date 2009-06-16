@@ -1,4 +1,9 @@
 require 'sinatra/base'
+require 'active_support'
+require 'active_resource'
+
+gem 'shopify_api'
+require 'shopify_api'
 
 module Sinatra
   module Shopify
@@ -10,6 +15,8 @@ module Sinatra
 
       def authorize!
         redirect '/login' unless current_shop
+
+        ActiveResource::Base.site = session[:shopify].site
       end
 
       def logout!
@@ -19,9 +26,20 @@ module Sinatra
 
     def self.registered(app)
       app.helpers Shopify::Helpers
+      app.enable :sessions
+
+      # load config file credentials
+      config = File.dirname(__FILE__) + "/shopify.yml"
+      credentials = YAML.load(File.read(config))
+      ShopifyAPI::Session.setup(credentials)
 
       app.get '/login' do
         erb :login
+      end
+      
+      app.get '/logout' do
+        logout!
+        redirect '/'
       end
 
       app.post '/login/authenticate' do

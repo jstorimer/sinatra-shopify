@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<meta name="MSSmartTagsPreventParsing" content="true" />
+
+  <title>Shopify Application</title>
+
+  <link type="text/css" rel="stylesheet" href="/stylesheets/application.css" />
+</head>
+	
+<body>
+  
+  <div id="header">
+    <h1><a href='/'>Shopify Demo Application</a></h1>      
+    
+    <p id="login-link">  
+      <% if current_shop %>
+          <span class="note">current shop</span> <a class='shop_name' href='http://#{current_shop.url}'><%= current_shop.url %></a><span class="note">|</span>           
+          <a href='/logout'>logout</a>
+      <% end %>
+    </p>
+  </div>
+
+  <div id="container" class="clearfix">
+    
+    <ul id="tabs">
+      <a href='/home' <%= if request.env['PATH_INFO'] =~ /home/ then "id='current'" end %>>Home</a>
+      <a href='/design' <%= if request.env['PATH_INFO'] =~ /design/ then "id='current'" end %>>Design Help</a>
+    </ul>
+    
+    <!-- begin div.main-->
+    <div id="main">
+      <%= yield %>   
+    </div>
+    <!-- end div.main -->
+        
+  </div>
+    
+</body>
+</html>
