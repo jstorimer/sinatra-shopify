@@ -1,12 +1,14 @@
 h1. Sinatra-Shopify: A classy shopify_app
 
-This is a basic sinatra app that allows you to work with the Shopify API. It's basically just a port of the "shopify_app":http://github.com/Shopify/shopify_app rails plugin to Sinatra.
+This is a basic sinatra app that allows you to work with the "Shopify API":http://shopify.com/developers. It's basically just a port of the "shopify_app":http://github.com/Shopify/shopify_app rails plugin to sinatra.
 
 h2. Why?
 
-Well, Rails is great, but most of the Shopify apps that I have come up with are one page apps, maybe two or three pages. The point is, I don't need a controller for that, I don't 63 files or however many the rails generator generates for me.
+I have been "having fun working on Shopify apps":http://www.jstorimer.com/blogs/my-blog/1133402-shopify-api-extensions lately, but I needed a simpler way than always generating a new rails app, new controllers, etc., for every little idea.
 
-Sinatra is most awesome when you are working on a small app with just a few routes. You can clone this app and use it as a starting point. All of the authentication logic/routes are in the lib folder, so they don't pollute the code of your app.
+Rails is great, but most of the "Shopify apps":http://apps.shopify.com that I have come up with are one page apps, maybe two or three pages. The point is, I don't need a controller for that, I don't need the 63 files or however many the rails generator generates for me.
+
+Sinatra is most awesome when you are working on a small app with just a few routes. You can clone this app and use it as a starting point for a shopify_app. All of the authentication logic/routes are in the lib folder, so they don't pollute the code of your app.
 
 So in app.rb, you just have to worry about the functionality of your app.
 
@@ -21,11 +23,11 @@ The fastest way to get this thing running:
 * Sign up for an account if you don't already have one
 * Log in to your Shopify partners account
 * Create a new application.
-* Make sure that the Callback URL is set to _http://yourapp.heroku.com/login/finalize_
+* Make sure that the Callback URL is set to http://_yourapp_.heroku.com/login/finalize
 * In the lib/sinatra/shopify.yml file replace API_KEY and SECRET with the Api Key and Secret that you just got from the Shopify Partners area
-* git push heroku master
-* heroku open
+* @git push heroku master@
+* @heroku open@
 
 h2. Disclaimer
 
-I am by no means a Sinatra expert, this is really my first Sinatra project. So if you see anything that could be done better, fork away
+I am by no means a sinatra expert, this is really my first experience with sinatra. So if you see anything that could be done better, fork away.
