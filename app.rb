@@ -1,6 +1,5 @@
-require 'rubygems'
-require 'vendor/sinatra/lib/sinatra.rb'
 require File.dirname(__FILE__) + '/lib/sinatra/shopify'
+set :raise_errors, true
 
 get '/' do
   redirect '/home'
