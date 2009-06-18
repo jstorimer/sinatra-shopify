@@ -1,5 +1,6 @@
 require 'rubygems'
-require 'sinatra'
+require 'vendor/rack/lib/rack.rb'
+require 'vendor/sinatra/lib/sinatra.rb'
 require File.dirname(__FILE__) + '/lib/sinatra/shopify'
 
 get '/' do
