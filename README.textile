@@ -1,0 +1,32 @@
+h1. Sinatra-Shopify: A classy shopify_app
+
+This is a basic sinatra app that allows you to work with the Shopify API. It's basically just a port of the "shopify_app":http://github.com/Shopify/shopify_app rails plugin to Sinatra.
+
+h2. Why?
+
+Well, Rails is great, but most of the Shopify apps that I have come up with are one page apps, maybe two or three pages. The point is, I don't need a controller for that, I don't 63 files or however many the rails generator generates for me.
+
+Sinatra is most awesome when you are working on a small app with just a few routes. You can clone this app and use it as a starting point. All of the authentication logic/routes are in the lib folder, so they don't pollute the code of your app.
+
+So in app.rb, you just have to worry about the functionality of your app.
+
+h2. Usage
+
+The fastest way to get this thing running:
+
+* @git clone git://github.com/jstorimer/sinatra-shopify@
+* @cd sinatra-shopify@
+* @heroku create@ (make sure that you remember the name of your app as you will need that later)
+* visit the "Shopify Partners area":http://app.shopify.com/services/partners
+* Sign up for an account if you don't already have one
+* Log in to your Shopify partners account
+* Create a new application.
+* Make sure that the Callback URL is set to _http://yourapp.heroku.com/login/finalize_
+* Back to the console
+* @heroku config:add SHOPIFY_API_KEY=YOUR_API_KEY SHOPIFY_API_SECRET=YOUR_SHARED_SECRET@
+* git push heroku master
+* heroku open
+
+h2. Disclaimer
+
+I am by no means a Sinatra expert, this is really my first Sinatra project. So if you see anything that could be done better, fork me :)
