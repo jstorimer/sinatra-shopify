@@ -28,6 +28,16 @@ The fastest way to get this thing running:
 * @git push heroku master@
 * @heroku open@
 
+The current implementation for authentication is to add the @authorize!@ method at the top of any routes that you want to be authenticated, like so:
+
+<pre><code>
+get '/sensitive_data' do
+  authorize!
+  
+  # then do the sensitive stuff
+end
+</code></pre>
+
 h2. Disclaimer
 
 I am by no means a sinatra expert, this is really my first experience with sinatra. So if you see anything that could be done better, fork away.
