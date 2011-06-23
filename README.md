@@ -1,8 +1,9 @@
-h1. Sinatra-Shopify: A classy shopify_app
+Sinatra-Shopify: A classy shopify_app
+====================================
 
-This is a basic sinatra app that allows you to work with the "Shopify API":http://shopify.com/developers. It's basically just a port of the "shopify_app":http://github.com/Shopify/shopify_app rails plugin to sinatra.
+This is a Sinatra extension that allows you to work with the "Shopify API":http://shopify.com/developers. It's basically just a port of the "shopify_app":http://github.com/Shopify/shopify_app rails plugin to sinatra.
 
-h2. Why?
+== Why?
 
 I have been "having fun working on Shopify apps":http://www.jstorimer.com/blogs/my-blog/1133402-shopify-api-extensions lately, but I needed a simpler way than always generating a new rails app, new controllers, etc., for every little idea.
 
@@ -12,9 +13,24 @@ Sinatra is most awesome when you are working on a small app with just a few rout
 
 So in app.rb, you just have to worry about the functionality of your app.
 
-h2. Usage
+== Usage
 
-The fastest way to get this thing running:
+Installable from rubygems as 'sinatra-shopify'.
+
+The current implementation for authentication is to add the @authorize!@ method at the top of any routes that you want to be authenticated, like so:
+
+```ruby
+get '/sensitive_data' do
+  authorize!
+  
+  # then do the sensitive stuff
+end
+```
+
+Example
+======
+
+This repo includes an example Sinatra app. The fastest way to get it running:
 
 * @git clone git://github.com/jstorimer/sinatra-shopify@
 * @cd sinatra-shopify@
@@ -27,17 +43,3 @@ The fastest way to get this thing running:
 * In the lib/sinatra/shopify.yml file replace API_KEY and SECRET with the Api Key and Secret that you just got from the Shopify Partners area
 * @git push heroku master@
 * @heroku open@
-
-The current implementation for authentication is to add the @authorize!@ method at the top of any routes that you want to be authenticated, like so:
-
-<pre><code>
-get '/sensitive_data' do
-  authorize!
-  
-  # then do the sensitive stuff
-end
-</code></pre>
-
-h2. Disclaimer
-
-I am by no means a sinatra expert, this is really my first experience with sinatra. So if you see anything that could be done better, fork away.

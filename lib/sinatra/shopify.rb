@@ -28,10 +28,7 @@ module Sinatra
       app.helpers Shopify::Helpers
       app.enable :sessions
 
-      # load config file credentials
-      config = File.dirname(__FILE__) + "/shopify.yml"
-      credentials = YAML.load(File.read(config))
-      ShopifyAPI::Session.setup(credentials)
+      ShopifyAPI::Session.setup(:api_key => ENV['SHOPIFY_API_KEY'], :secret => ENV['SHOPIFY_API_SECRET'])
 
       app.get '/login' do
         erb :login
