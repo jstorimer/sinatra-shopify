@@ -10,8 +10,9 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/jstorimer/sinatra-shopify/"
 
   s.files = Dir.glob('lib/**/*.rb')
-  s.files += ['README.md', 'LICENSE']
+  s.files += ['README.md', 'LICENSE', 'sinatra-shopify.gemspec']
 
-  s.add_dependency 'sinatra', '~> 1.0'
+  s.add_dependency 'sinatra',     '~> 1.0'
+  s.add_dependency 'shopify_api', '~> 1.2'
 end
 
