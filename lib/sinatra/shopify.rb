@@ -1,8 +1,4 @@
 require 'sinatra/base'
-require 'active_support'
-require 'active_resource'
-
-gem 'shopify_api'
 require 'shopify_api'
 
 module Sinatra
@@ -16,7 +12,7 @@ module Sinatra
       def authorize!
         redirect '/login' unless current_shop
 
-        ActiveResource::Base.site = session[:shopify].site
+        ShopifyAPI::Base.site = session[:shopify].site
       end
 
       def logout!
@@ -27,6 +23,26 @@ module Sinatra
     def self.registered(app)
       app.helpers Shopify::Helpers
       app.enable :sessions
+
+      app.template :login do
+        <<-SRC
+        <h1>Login</h1>
+
+        <p>
+          First you have to register this app with a shop to allow access to its private admin data.
+        </p>
+
+        <form action='/login/authenticate' method='post'>
+          <label for='shop'><strong>The URL of the Shop</strong>
+            <span class="hint">(or just the subdomain if it's at myshopify.com)</span>
+          </label>
+          <p>
+            <input type='text' name='shop' />
+          </p>
+          <input type='submit' value='Authenticate' />
+        </form>
+          SRC
+      end
 
       ShopifyAPI::Session.setup(:api_key => ENV['SHOPIFY_API_KEY'], :secret => ENV['SHOPIFY_API_SECRET'])
 
