@@ -44,6 +44,9 @@ module Sinatra
           SRC
       end
 
+      unless ENV['SHOPIFY_API_KEY'] && ENV['SHOPIFY_API_SECRET']
+        puts "Set your Shopify api_key and secret via ENV['SHOPIFY_API_KEY'] and ENV['SHOPIFY_API_SECRET']"
+      end
       ShopifyAPI::Session.setup(:api_key => ENV['SHOPIFY_API_KEY'], :secret => ENV['SHOPIFY_API_SECRET'])
 
       app.get '/login' do
